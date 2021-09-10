@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>jeu</title>
+  <style>
+      html{
+          font-family: Georgia, Times, 'Times New Roman', serif;
+      }
+      h1{
+          
+          font-size: xx-large;
+          background-color: blueviolet;
+          text-align: center;
+      }
+      P{
+          font-size: 36px;
+          padding: 3px;
+      }
+      #resultat{
+          background-color: crimson;
+      }
+  </style>
+  </head>
+  <body>
+   <h1>Mon petit jeu</h1>
+   <p>nous avons choisit un nombre aleatoire entre 1 et 100.<br>
+    Essayer de le decouvrir.nous affichons si vous avez la  bonne ou la movaise reponse.</p>
+    <div>
+        <label for="essayer">Essayer</label>
+        <input type="text" id="essayer">
+        <input type="submit" value="Tester" onclick="Tester()" id="b">
+    </div>
+    <div >
+        <p id="t"></p>   
+        <p id="resultat"></p>
+    </div>
+
+    <script>
+
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+        const AffichageHistorique = document.getElementById('t');
+        const resultat = document.getElementById('resultat');
+        const essayer = document.getElementById('essayer');
+        const b = document.getElementById('b');
+        var NbreEssai = 1;
+
+        function Tester(){
+            var NbreUser = Number(essayer.value);
+            if (NbreEssai === 1) {
+                AffichageHistorique.textContent = 'Vos Tests:';
+            }
+                AffichageHistorique.textContent += NbreUser + ' ';
+            if (NbreUser === randomNumber)    resultat.textContent = 'Bravo!';
+            else if (NbreEssai === 3)        {resultat.textContent = '!!!GAME OVER!!!. Le bon nombre : '+randomNumber;b.disabled=true;}
+           else                               resultat.textContent = 'Faux!';
+           NbreEssai++;
+           essayer.value = '';
+           essayer.focus();
+           
+        }
+        </script>
+</body>
+</html>
